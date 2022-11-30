@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "549094456284",
+    "project_id": "nosici-dbd62",
+    "storage_bucket": "nosici-dbd62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549094456284:android:eacd051ee4f04634a8ed19",
+        "android_client_info": {
+          "package_name": "com.example.nosici"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "549094456284-oh276qsbslposbca855gj88q6gcvqgme.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnGLN0kE7Xsinkf7dAjqeJxaMxOV1vpkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "549094456284-oh276qsbslposbca855gj88q6gcvqgme.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
