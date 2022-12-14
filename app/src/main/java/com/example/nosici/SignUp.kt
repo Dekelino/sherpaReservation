@@ -3,9 +3,12 @@ package com.example.nosici
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.nosici.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -27,7 +30,6 @@ class SignUp : AppCompatActivity() {
         supportActionBar?.hide()
 
         mAuth = FirebaseAuth.getInstance()
-        mDbRef= FirebaseDatabase.getInstance().getReference("Users")
 
         edtName = findViewById(R.id.edt_name)
         edtEmail = findViewById(R.id.etd_email)
@@ -40,37 +42,27 @@ class SignUp : AppCompatActivity() {
             val password = edtPassword.text.toString()
 
             signUp(name, email, password)
-
-            mDbRef = FirebaseDatabase.getInstance().getReference("Users")
-
-            val pele = "jano"
-            mDbRef.setValue(pele)
-
-
-
         }
 
     }
 
-        private fun signUp(name: String, email: String, password: String) {
-            //vytváranie usera
-            mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // home screen
-                        addUserToDatabase(name, email, mAuth.currentUser?.uid!!)
-                        val intent = Intent(this@SignUp, MainActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        Toast.makeText(this@SignUp, "Error maš moja zlata", Toast.LENGTH_SHORT).show()
-                    }
+    private fun signUp(name: String, email: String, password: String) {
+        //vytváranie usera
+        mAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // home screen
+                    addUserToDatabase(name, email, mAuth.currentUser?.uid!!)
+                    val intent = Intent(this@SignUp, MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this@SignUp, "Error maš moja zlata", Toast.LENGTH_SHORT).show()
                 }
+            }
     }
 
     private fun addUserToDatabase(name: String, email: String, uid: String) {
-        mDbRef = FirebaseDatabase.getInstance().getReference()
+        mDbRef = FirebaseDatabase.getInstance("https://nosici-dbd62-default-rtdb.europe-west1.firebasedatabase.app/").getReference()
         mDbRef.child("user").child(uid).setValue(User(name, email, uid))
     }
 }
-
-//  val databaseManager=ManageDatabase()
