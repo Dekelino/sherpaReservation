@@ -54,7 +54,9 @@ class SignUp : AppCompatActivity() {
                     // home screen
                     addUserToDatabase(name, email, mAuth.currentUser?.uid!!)
                     val intent = Intent(this@SignUp, MainActivity::class.java)
+                    finish()
                     startActivity(intent)
+
                 } else {
                     Toast.makeText(this@SignUp, "Error maš moja zlata", Toast.LENGTH_SHORT).show()
                 }
