@@ -45,26 +45,10 @@ class ChatActivity : AppCompatActivity() {
         sendButton = findViewById(R.id.sentButton)
         messageList = ArrayList()
         messageAdapter = MessageAdapter(this, messageList)
-        // pridavanie spravy do databazy
-
-        sendButton.setOnClickListener{
-
-            val message = messageBox.text.toString()
-            val messageObject = Message(message, senderUid)
-
-            mDbRef.child("chats").child(senderRoom!!).child("messages").push()
-                .setValue(messageObject).addOnSuccessListener {
-                    mDbRef.child("chats").child(recieverRoom!!).child("messages").push()
-                        .setValue(messageObject)
-
-                }
-            messageBox.setText("")
-
-
-        }
 
         chatRecyclerView.layoutManager = LinearLayoutManager(this)
         chatRecyclerView.adapter = messageAdapter
+
 
         //pridavanie dat do recyclerView
         mDbRef.child("chats").child(senderRoom!!).child("messages")
@@ -85,6 +69,23 @@ class ChatActivity : AppCompatActivity() {
 
                 }
 
+            })
+
+
+                    // pridavanie spravy do databazy
+
+        sendButton . setOnClickListener {
+
+            val message = messageBox.text.toString()
+            val messageObject = Message(message, senderUid)
+
+            mDbRef.child("chats").child(senderRoom!!).child("messages").push()
+                .setValue(messageObject).addOnSuccessListener {
+                    mDbRef.child("chats").child(recieverRoom!!).child("messages").push()
+                        .setValue(messageObject)
+                }
+            messageBox.setText("")
+        }
 
     }
 }
