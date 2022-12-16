@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login">
@@ -10,53 +11,92 @@
         android:id="@+id/app_logo"
         android:layout_width="260dp"
         android:layout_height="265dp"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
-        android:src="@drawable/login_hory" />
+        android:src="@drawable/login_hory"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/etd_email"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/app_logo"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/edt_background"
-        android:hint="Email"
-        android:paddingLeft="15dp" />
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_background"
+        android:text="Log in"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline17"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/okolopasswordu" />
 
-    <EditText
-        android:id="@+id/etd_password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/etd_email"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/edt_background"
-        android:hint="Password"
-        android:paddingLeft="15dp" />
-   <Button
-       android:id="@+id/btnLogin"
-       android:layout_width="150dp"
-       android:layout_height="wrap_content"
-       android:layout_below="@id/etd_password"
-       android:text="Log in"
-       android:background="@drawable/btn_background"
-       android:textColor="@color/white"
-       android:textSize="20dp"
-       android:layout_centerHorizontal="true"
-       android:layout_marginTop="10dp"/>
     <Button
         android:id="@+id/btnSingUp"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnLogin"
-        android:text="Sign Up"
         android:background="@drawable/btn_background"
+        android:text="Sign Up"
         android:textColor="@color/white"
         android:textSize="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
-</RelativeLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        app:layout_constraintTop_toBottomOf="@+id/app_logo"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etd_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/okolopasswordu"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etd_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="396dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="342dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="574dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

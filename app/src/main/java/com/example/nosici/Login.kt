@@ -7,13 +7,16 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
+import org.w3c.dom.Text
 
 class Login : AppCompatActivity() {
 
-    private lateinit var edtEmail:EditText
-    private lateinit var edtPassword:EditText
+    private lateinit var edtEmail:TextInputEditText
+    private lateinit var edtPassword:TextInputEditText
     private lateinit var btnLogin:Button
     private lateinit var btnSignUp:Button
 
@@ -38,10 +41,10 @@ class Login : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener{
-            val email = edtEmail.text.toString()
-            val password = edtPassword.text.toString()
+            val email = edtEmail.editableText.toString()
+            val password = edtPassword.editableText.toString()
 
-            login(email,password)
+           login(email,password)
         }
     }
     private fun login(email:String, password:String){
