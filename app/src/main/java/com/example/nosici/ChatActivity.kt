@@ -1,7 +1,9 @@
 package com.example.nosici
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +18,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var sendButton: ImageView
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messageList: ArrayList<Message>
-    private lateinit var db: DatabaseReference
+    private lateinit var mDbRef: DatabaseReference
 
     var recieverRoom: String? = null
     var senderRoom: String? = null
@@ -29,7 +31,7 @@ class ChatActivity : AppCompatActivity() {
         val receiverUid = intent.getStringExtra("uid")
 
         val senderUid = FirebaseAuth.getInstance().currentUser?.uid
-        db =
+        mDbRef =
             FirebaseDatabase.getInstance("https://nosici-dbd62-default-rtdb.europe-west1.firebasedatabase.app/")
                 .getReference()
 
@@ -49,7 +51,7 @@ class ChatActivity : AppCompatActivity() {
 
 
         //pridavanie dat do recyclerView
-        db.child("chats").child(senderRoom!!).child("messages")
+        mDbRef.child("chats").child(senderRoom!!).child("messages")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
 
@@ -77,9 +79,9 @@ class ChatActivity : AppCompatActivity() {
             val message = messageBox.text.toString()
             val messageObject = Message(message, senderUid)
 
-            db.child("chats").child(senderRoom!!).child("messages").push()
+            mDbRef.child("chats").child(senderRoom!!).child("messages").push()
                 .setValue(messageObject).addOnSuccessListener {
-                    db.child("chats").child(recieverRoom!!).child("messages").push()
+                    mDbRef.child("chats").child(recieverRoom!!).child("messages").push()
                         .setValue(messageObject)
                 }
             messageBox.setText("")

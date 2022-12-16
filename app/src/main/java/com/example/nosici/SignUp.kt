@@ -3,9 +3,12 @@ package com.example.nosici
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.nosici.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -16,8 +19,8 @@ class SignUp : AppCompatActivity() {
     private lateinit var edtEmail: EditText
     private lateinit var edtPassword: EditText
     private lateinit var btnSignUp: Button
-    private lateinit var aAuthentication: FirebaseAuth
-    private lateinit var db: DatabaseReference
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var mDbRef: DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +29,7 @@ class SignUp : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        aAuthentication = FirebaseAuth.getInstance()
+        mAuth = FirebaseAuth.getInstance()
 
         edtName = findViewById(R.id.edt_name)
         edtEmail = findViewById(R.id.etd_email)
@@ -45,11 +48,11 @@ class SignUp : AppCompatActivity() {
 
     private fun signUp(name: String, email: String, password: String) {
         //vytváranie usera
-        aAuthentication.createUserWithEmailAndPassword(email, password)
+        mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // home screen
-                    addUserToDatabase(name, email, aAuthentication.currentUser?.uid!!)
+                    addUserToDatabase(name, email, mAuth.currentUser?.uid!!)
                     val intent = Intent(this@SignUp, MainActivity::class.java)
                     finish()
                     startActivity(intent)
@@ -61,7 +64,7 @@ class SignUp : AppCompatActivity() {
     }
 
     private fun addUserToDatabase(name: String, email: String, uid: String) {
-        db = FirebaseDatabase.getInstance("https://nosici-dbd62-default-rtdb.europe-west1.firebasedatabase.app/").getReference()
-        db.child("user").child(uid).setValue(User(name, email, uid))
+        mDbRef = FirebaseDatabase.getInstance("https://nosici-dbd62-default-rtdb.europe-west1.firebasedatabase.app/").getReference()
+        mDbRef.child("user").child(uid).setValue(User(name, email, uid))
     }
 }
