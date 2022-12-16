@@ -3,29 +3,28 @@ package com.example.nosici
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
 
 class Login : AppCompatActivity() {
 
-    private lateinit var edtEmail:EditText
+    private lateinit var edtEmail: TextInputLayout
     private lateinit var edtPassword:EditText
     private lateinit var btnLogin:Button
     private lateinit var btnSignUp:Button
 
-    private lateinit var mAuth:FirebaseAuth
+    private lateinit var aAutentication:FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        supportActionBar?.hide()
+       supportActionBar?.hide()
 
-        mAuth = FirebaseAuth.getInstance()
+        aAutentication = FirebaseAuth.getInstance()
 
         edtEmail=findViewById(R.id.etd_email)
         edtPassword=findViewById(R.id.etd_password)
@@ -38,7 +37,7 @@ class Login : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener{
-            val email = edtEmail.text.toString()
+            val email = edtEmail.editText?.text.toString()
             val password = edtPassword.text.toString()
 
             login(email,password)
@@ -47,7 +46,7 @@ class Login : AppCompatActivity() {
     private fun login(email:String, password:String){
         // login usera
 
-        mAuth.signInWithEmailAndPassword(email, password)
+        aAutentication.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     //logging in

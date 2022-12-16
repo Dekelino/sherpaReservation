@@ -21,14 +21,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userList: ArrayList<User>
     private lateinit var adapter:UserAdapter
-    private lateinit var mAuth : FirebaseAuth
+    private lateinit var aAuthentication : FirebaseAuth
     private lateinit var mDbRef:DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mAuth=FirebaseAuth.getInstance()
+        aAuthentication=FirebaseAuth.getInstance()
         mDbRef=FirebaseDatabase.getInstance("https://nosici-dbd62-default-rtdb.europe-west1.firebasedatabase.app/").getReference()
 
         userList = ArrayList()
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 for(postSnapshot in snapshot.children){
                     val currentUser = postSnapshot.getValue(User::class.java)
 
-                     if(mAuth.currentUser?.uid!=currentUser?.uid){
+                     if(aAuthentication.currentUser?.uid!=currentUser?.uid){
                          userList.add(currentUser!!)
                      }
 
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
         if(item.itemId==R.id.logout){
             //login pre logout
-            mAuth.signOut()
+            aAuthentication.signOut()
             val intent = Intent(this@MainActivity,Login::class.java)
             finish()
             startActivity(intent)

@@ -37,11 +37,27 @@
         android:background="@drawable/edt_background"
         android:hint="Password"
         android:paddingLeft="15dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailSkusam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/label"
+        android:layout_below="@id/etd_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
    <Button
        android:id="@+id/btnLogin"
        android:layout_width="150dp"
        android:layout_height="wrap_content"
-       android:layout_below="@id/etd_password"
+       android:layout_below="@id/emailSkusam"
        android:text="Log in"
        android:background="@drawable/btn_background"
        android:textColor="@color/white"
