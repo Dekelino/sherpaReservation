@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignUp">
@@ -10,56 +11,98 @@
         android:id="@+id/app_logo"
         android:layout_width="260dp"
         android:layout_height="265dp"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
-        android:src="@drawable/login_hory" />
+        android:src="@drawable/login_hory"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edt_name"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/app_logo"
-        android:paddingLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edt_background"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlineName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
         android:hint="Name"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusTopEnd="15dp"
+        app:boxCornerRadiusTopStart="15dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/outlinedTextField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_logo">
 
 
-    <EditText
-        android:id="@+id/etd_email"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/edt_name"
-        android:paddingLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edt_background"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
         android:hint="Email"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusTopEnd="15dp"
+        app:boxCornerRadiusTopStart="15dp"
 
-    <EditText
-        android:id="@+id/etd_password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/etd_email"
-        android:background="@drawable/edt_background"
-        android:paddingLeft="15dp"
-        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_logo">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etd_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/okolopasswordu"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
         android:hint="Password"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusTopEnd="15dp"
+        app:boxCornerRadiusTopStart="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outlineName">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etd_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnSingUp"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etd_password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
         android:background="@drawable/btn_background"
         android:text="Sign Up"
         android:textColor="@color/white"
-        android:textSize="20dp" />
-</RelativeLayout>
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField" />
+</androidx.constraintlayout.widget.ConstraintLayout>
